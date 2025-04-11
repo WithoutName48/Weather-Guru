@@ -19,7 +19,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
+/* a {
   font-weight: 500;
   color: #dddeff;
   text-decoration: inherit;
@@ -27,7 +27,7 @@ a {
 
 a:hover {
   color: #cfcfcf;
-}
+} */
 
 body {
   margin: 0;
