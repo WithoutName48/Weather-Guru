@@ -1,12 +1,9 @@
 <script>
-  // @ts-ignore
   import Router from "svelte-spa-router";
-  import Page from "./screens/Template.svelte";
-  import Page2 from "./screens/Template.svelte";
+  import Index from "./pages/Index.svelte"
 
   const routes = {
-    "/": Page,
-    "/page2": Page2,
+    "/": Index,
   };
 </script>
 
