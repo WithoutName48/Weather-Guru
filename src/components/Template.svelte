@@ -18,7 +18,6 @@
   
     async function fetchWeather() {
       try {
-        // Step 1: Get coordinates from location name
         const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(location)}&count=1`);
         const geoData = await geoRes.json();
   
@@ -29,7 +28,6 @@
   
         const { latitude, longitude } = geoData.results[0];
   
-        // Step 2: Get weather for coordinates
         const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
         const weatherData = await weatherRes.json();
   
@@ -47,7 +45,7 @@
     }
   </script>
   
-  <main class="min-h-screen bg-gradient-to-br from-sky-200/55 to-blue-400/55 backdrop-blur-md flex flex-col items-center justify-center p-4">
+  <main class="min-h-screen bg-gradient-to-br from-sky-200/40 to-blue-400/40 backdrop-blur-md flex flex-col items-center justify-center p-4">
     <div class="bg-white rounded-2xl shadow-lg p-8 w-full max-w-md text-center space-y-8">
       <h1 class="text-lg-3xl text-xs-xl font-bold text-gray-800">
         Weather<span class="text-blue-800">Guru</span>

@@ -1,9 +1,11 @@
 <script>
   import Router from "svelte-spa-router";
-  import Index from "./pages/Index.svelte"
+  import Index from "./pages/Index.svelte";
+  import Forecast from "./pages/Forecast.svelte";
 
   const routes = {
     "/": Index,
+    "/forecast": Forecast,
   };
 </script>
 
