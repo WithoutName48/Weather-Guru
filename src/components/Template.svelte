@@ -45,7 +45,7 @@
     }
   </script>
   
-  <main class="min-h-screen bg-gradient-to-br from-sky-200/40 to-blue-400/40 backdrop-blur-md flex flex-col items-center justify-center p-4">
+  <div class="container min-h-screen bg-gradient-to-br from-sky-200/40 to-blue-400/40 backdrop-blur-md flex flex-col items-center justify-center p-4">
     <div class="bg-white rounded-2xl shadow-lg p-8 w-full max-w-md text-center space-y-8">
       <h1 class="text-lg-3xl text-xs-xl font-bold text-gray-800">
         Weather<span class="text-blue-800">Guru</span>
@@ -60,19 +60,19 @@
       />
   
       <div class="flex flex-col space-y-3">
-        <a href="/forecast" class="w-full p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
+        <a href="/#/forecast" class="w-full p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
           Forecast Weather (16 days)
         </a>
   
-        <a href="/history" class="w-full p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
+        <a href="/#/history" class="w-full p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
           Historical Weather (since 1940)
         </a>
   
-        <a href="/air-quality" class="w-full p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
+        <a href="/#/air-quality" class="w-full p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
           Air Quality Forecast (7 days)
         </a>
   
-        <a href="/marine" class="w-full p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
+        <a href="/#/marine" class="w-full p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
           Marine Weather Forecast (16 days)
         </a>
       </div>
@@ -101,10 +101,10 @@
         </div>
       </div>
     </div>
-  </main>
+  </div>
   
   <style>
-    main {
+    .container {
       min-width: 30%;
       max-width: 40%;
     }

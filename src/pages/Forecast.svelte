@@ -1,7 +1,7 @@
 <script>
     import Template from "../components/Template.svelte";
-  
-    import { onMount } from "svelte";
+
+    import { tick } from "svelte";
     import Chart from 'chart.js/auto';
   
     let location = "";
@@ -9,7 +9,7 @@
     let longitude = null;
     let weatherData = null;
     let chart;
-  
+
     // Function to get the coordinates of the location
     async function getCoordinates() {
       const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(location)}&count=1`);
@@ -31,25 +31,25 @@
   
       const res = await fetch(url);
       weatherData = await res.json();
-  
+
+      await tick(); // wait for DOM update
+
       // After fetching, draw chart
-      setTimeout(drawChart, 100);
+      drawChart();
     }
   
     // Function to draw the forecast chart
     function drawChart() {
       if (!weatherData) return;
-  
-      const canvas = document.getElementById('weatherChart');
-  
-      if (!canvas || !(canvas instanceof HTMLCanvasElement)) return;
-  
-      const ctx = canvas.getContext('2d');
+      
+      const canvasWeather = document.getElementById('weatherChart');
+      // @ts-ignore
+      const ctx = canvasWeather.getContext('2d');
   
       if (chart) {
         chart.destroy();
       }
-  
+ 
       const labels = weatherData.daily.time;
       const dataset1 = weatherData.daily.temperature_2m_max;
       const dataset2 = weatherData.daily.temperature_2m_min;
@@ -92,9 +92,9 @@
   <div id="index">
     <Template />
   
-    <div id="index_content">
-        <div class="min-w-[300px] max-w-[90%]  bg-white bg-opacity-80 p-10 rounded-2xl shadow-lg text-center space-y-6">
-            <div class="w-full flex flex-col items-center gap-4">
+    <div id="index_content" class="max-h-full">
+        <div class="min-w-[300px] max-w-[90%] max-h-full bg-white bg-opacity-80 p-10 rounded-2xl shadow-lg text-center space-y-6">
+            <div class="w-full flex flex-col items-center gap-4 max-h-full">
                 <div class="flex flex-col sm:flex-row gap-2 w-full max-w-2xl">
                 <input
                     type="text"
@@ -104,7 +104,7 @@
                 />
                 </div>
         
-                <button on:click={fetchData} class="w-full p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition !bg-blue-500">
+                <button on:click={fetchData} class="w-full p-3 !bg-blue-500 text-white rounded-lg hover:bg-blue-600 transitio">
                 Fetch Forecast
                 </button>
         
@@ -113,8 +113,8 @@
                     <canvas id="weatherChart"></canvas>
                 </div>
         
-                <div class="overflow-x-auto mt-6 w-full">
-                    <table class="min-w-full bg-white rounded-lg overflow-hidden w-full">
+                <div class="mt-6 w-full overflow-auto max-h-[400px]">
+                    <table class="min-w-full bg-white rounded-lg w-full">
                     <thead class="bg-gray-200">
                         <tr>
                         <th class="py-2 px-4">Date</th>
@@ -144,7 +144,7 @@
       width: 100vw;
       height: 100vh;
       position: static;
-      background-image: url('https://ukhsa.blog.gov.uk/wp-content/uploads/sites/33/2023/06/rainbow-4047523_1920.jpg');
+      background-image: url('https://preview.redd.it/nduksi52zrs41.jpg?auto=webp&s=0760039b9b3ebdb699ef6569ee313b787f27375c');
       background-size: cover;
       background-position: center center;
       display: flex;
@@ -159,8 +159,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-
-      overflow: auto;
     }
   </style>
   

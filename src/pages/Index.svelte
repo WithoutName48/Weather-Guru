@@ -46,7 +46,7 @@
     #index {
         width: 100vw;
         height: 100vh;
-        background-image: url('https://ukhsa.blog.gov.uk/wp-content/uploads/sites/33/2023/06/rainbow-4047523_1920.jpg');
+        background-image: url('https://preview.redd.it/nduksi52zrs41.jpg?auto=webp&s=0760039b9b3ebdb699ef6569ee313b787f27375c');
         background-size: cover;
         background-position: center center;
         display: flex;
