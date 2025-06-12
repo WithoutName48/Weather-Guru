@@ -45,8 +45,8 @@
     }
   </script>
   
-  <div class="container min-h-screen bg-gradient-to-br from-sky-200/40 to-blue-400/40 backdrop-blur-md flex flex-col items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-lg p-8 w-full max-w-md text-center space-y-8">
+<div class="container w-full max-w-full min-h-screen flex-grow h-fit bg-gradient-to-br from-sky-200/40 to-blue-400/40 backdrop-blur-md flex flex-col items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-lg p-8 w-full max-w-md text-center space-y-8" style="height: fit-content;">
       <h1 class="text-lg-3xl text-xs-xl font-bold text-gray-800">
         Weather<span class="text-blue-800">Guru</span>
       </h1>
@@ -56,7 +56,7 @@
         bind:value={location}
         placeholder="Enter a location and press Enter"
         on:keydown={handleKeyDown}
-        class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        class="w-full p-3 rounded-lg border border-gray-300 text-gray-300 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
       />
   
       <div class="flex flex-col space-y-3">
@@ -85,7 +85,7 @@
             🌤️
           {/if}
         </div>
-        <div class="text-2xl font-semibold">
+        <div class="text-2xl text-blue-400 font-semibold">
           {#if temperature !== null}
             {temperature}°C
           {:else}
@@ -102,11 +102,3 @@
       </div>
     </div>
   </div>
-  
-  <style>
-    .container {
-      min-width: 30%;
-      max-width: 40%;
-    }
-  </style>
-  
