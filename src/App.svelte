@@ -3,11 +3,13 @@
   import Index from "./pages/Index.svelte";
   import Forecast from "./pages/Forecast.svelte";
   import AirQuality from "./pages/AirQuality.svelte";
+  import MarineForecast from "./pages/MarineForecast.svelte";
 
   const routes = {
     "/": Index,
     "/forecast": Forecast,
-    "/air-quality": AirQuality
+    "/air-quality": AirQuality,
+    "/marine": MarineForecast,
   };
 </script>
 
@@ -15,5 +17,5 @@
   id="mane"
   class="flex flex-col flex-1 items-center bg-gray-600 justify-around"
 > -->
-  <Router {routes} />
+<Router {routes} />
 <!-- </main> -->

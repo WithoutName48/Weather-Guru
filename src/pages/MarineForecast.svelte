@@ -7,7 +7,7 @@
   let location = "";
   let latitude = null;
   let longitude = null;
-  let weatherData = null;
+  let marineData = null;
   let chart;
 
   // Function to get the coordinates of the location
@@ -29,10 +29,10 @@
     await getCoordinates();
     if (!latitude || !longitude) return;
 
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=16`;
+    const url = `https://marine-api.open-meteo.com/v1/marine?latitude=${latitude}&longitude=${longitude}&hourly=wave_height,ocean_current_velocity&forecast_days=16`;
 
     const res = await fetch(url);
-    weatherData = await res.json();
+    marineData = await res.json();
 
     await tick(); // wait for DOM update
 
@@ -42,21 +42,21 @@
 
   // Function to draw the forecast chart
   function drawChart() {
-    if (!weatherData) return;
+    if (!marineData) return;
 
-    const canvasWeather = document.getElementById("weatherChart");
+    const canvasMarine = document.getElementById("marineChart");
     // @ts-ignore
-    const ctx = canvasWeather.getContext("2d");
+    const ctx = canvasMarine.getContext("2d");
 
     if (chart) {
       chart.destroy();
     }
 
-    const labels = weatherData.daily.time;
-    const dataset1 = weatherData.daily.temperature_2m_max;
-    const dataset2 = weatherData.daily.temperature_2m_min;
-    const label1 = "Max Temp (°C)";
-    const label2 = "Min Temp (°C)";
+    const labels = marineData.hourly.time;
+    const dataset1 = marineData.hourly.wave_height;
+    const dataset2 = marineData.hourly.ocean_current_velocity;
+    const label1 = "Wave height [m]";
+    const label2 = "Ocean current velocity [km/h]";
 
     chart = new Chart(ctx, {
       type: "line",
@@ -115,12 +115,12 @@
           on:click={fetchData}
           class="w-full p-3 !bg-blue-500 text-white rounded-lg hover:bg-blue-600 transitio"
         >
-          Fetch Forecast
+          Fetch marine forecast
         </button>
 
-        {#if weatherData}
+        {#if marineData}
           <div class="w-full max-w-4xl">
-            <canvas id="weatherChart" height="400" width="800"></canvas>
+            <canvas id="marineChart" height="400" width="800"></canvas>
           </div>
 
           <div class="mt-6 w-full overflow-auto max-h-[400px]">
@@ -128,19 +128,19 @@
               <thead class="bg-gray-200">
                 <tr>
                   <th class="py-2 px-4">Date</th>
-                  <th class="py-2 px-4">Max Temp (°C)</th>
-                  <th class="py-2 px-4">Min Temp (°C)</th>
+                  <th class="py-2 px-4">Wave height [m]</th>
+                  <th class="py-2 px-4">Ocean current velocity [km/h]</th>
                 </tr>
               </thead>
               <tbody>
-                {#each weatherData.daily.time as time, index}
+                {#each marineData.hourly.time as time, indx}
                   <tr class="border-t">
                     <td class="py-2 px-4 text-center">{time}</td>
                     <td class="py-2 px-4 text-center"
-                      >{weatherData.daily.temperature_2m_max[index]}</td
+                      >{marineData.hourly.wave_height[indx]}</td
                     >
                     <td class="py-2 px-4 text-center"
-                      >{weatherData.daily.temperature_2m_min[index]}</td
+                      >{marineData.hourly.ocean_current_velocity[indx]}</td
                     >
                   </tr>
                 {/each}
