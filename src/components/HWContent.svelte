@@ -118,7 +118,7 @@ async function fetchData() {
               type="text"
               bind:value={location}
               placeholder="Type..."
-              class="p-3 w-full rounded border border-gray-400 text-gray-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              class="p-3 w-full text-center rounded border border-gray-400 text-gray-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </label>
         </div>
@@ -131,7 +131,7 @@ async function fetchData() {
               bind:value={startDate}
               min="1940-01-01"
               max={maxDate}
-              class="p-3 w-full border rounded border-gray-400 text-gray-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              class="p-3 w-full text-center border rounded border-gray-400 text-gray-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </label>
           <label class="w-full">
@@ -141,7 +141,7 @@ async function fetchData() {
               bind:value={endDate}
               min="1940-01-01"
               max={maxDate}
-              class="p-3 w-full border rounded border-gray-400 text-gray-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              class="p-3 text-center w-full border rounded border-gray-400 text-gray-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </label>
         </div>

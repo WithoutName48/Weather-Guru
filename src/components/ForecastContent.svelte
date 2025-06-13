@@ -101,7 +101,7 @@
             type="text"
             bind:value={location}
             placeholder="Enter location"
-            class="p-3 w-full rounded border border-gray-400 text-gray-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            class="p-3 text-center w-full rounded border border-gray-400 text-gray-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         </div>
 

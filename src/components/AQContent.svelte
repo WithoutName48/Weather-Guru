@@ -11,6 +11,8 @@
     // european_aqi_ozone
     // european_aqi_sulphur_dioxide
 
+    let timelabels = [];
+
     const EAQI = [
         [10, 20, 25, 50, 75, 800],
         [20, 40, 50, 100, 150, 1200],
@@ -84,6 +86,25 @@
             chart.destroy();
         }
 
+        let labels = airQualityData.hourly.time.map((val)=>{
+            return val.replace("T", " ");
+        });
+        labels = labels.filter((val, index)=> {
+            if (airQualityData.hourly.european_aqi[index] == null &&
+                airQualityData.hourly.european_aqi_nitrogen_dioxide[index] == null &&
+                airQualityData.hourly.european_aqi_ozone[index] == null &&
+                airQualityData.hourly.european_aqi_pm10[index] == null &&
+                airQualityData.hourly.european_aqi_pm2_5[index] == null &&
+                airQualityData.hourly.european_aqi_sulphur_dioxide[index] == null
+            ) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        });
+        timelabels = labels;
+
         const dataToMap = Object.entries(airQualityData.hourly).filter((val) =>
             val[0].includes("european"),
         );
@@ -133,10 +154,6 @@
             return {
                 [key]: newArr,
             };
-        });
-
-        const labels = airQualityData.hourly.time.map((val)=>{
-            return val.replace("T", " ");
         });
         const labels_datasets = [
             "European AQI",
@@ -236,7 +253,7 @@
                     type="text"
                     bind:value={location}
                     placeholder="Enter location"
-                    class="p-3 w-full rounded border border-gray-400 text-gray-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    class="p-3 text-center w-full rounded border border-gray-400 text-gray-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
             </div>
 
@@ -281,7 +298,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {#each airQualityData.hourly.time as time, i}
+                            {#each timelabels as time, i}
                                 <tr class="border-t">
                                     <td
                                         class="py-2 px-4 text-cent bg-gray-600 text-white"

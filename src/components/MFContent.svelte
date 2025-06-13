@@ -4,6 +4,8 @@
   import { tick } from "svelte";
   import Chart from "chart.js/auto";
 
+  let timelabels = [];
+
   let location = "";
   let latitude = null;
   let longitude = null;
@@ -42,7 +44,11 @@
 
   // Function to draw the forecast chart
   function drawChart() {
-    if (!marineData) return;
+    if (!marineData || (marineData.hourly.wave_height[0] === null && marineData.hourly.ocean_current_velocity[0] === null))  {
+      alert("No data for this city.");
+      marineData = null;
+      return;
+    }
 
     const canvasMarine = document.getElementById("marineChart");
     // @ts-ignore
@@ -52,9 +58,17 @@
       chart.destroy();
     }
 
-    const labels = marineData.hourly.time.map((val)=>{
-            return val.replace("T", " ");
-        });
+    let labels = marineData.hourly.time.map((val)=>{
+        return val.replace("T", " ");
+    });
+
+    labels = labels.filter((val, index)=> {
+      if (marineData.hourly.wave_height[index] === null && marineData.hourly.ocean_current_velocity[index] === null) {
+        return false;
+      }
+      return true;
+    });
+    timelabels = labels;
     const dataset1 = marineData.hourly.wave_height;
     const dataset2 = marineData.hourly.ocean_current_velocity;
     const label1 = "Wave height [m]";
@@ -101,7 +115,7 @@
             type="text"
             bind:value={location}
             placeholder="Enter location"
-            class="p-3 w-full rounded border border-gray-400 text-gray-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            class="p-3 text-center w-full rounded border border-gray-400 text-gray-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         </div>
 
@@ -127,7 +141,7 @@
                 </tr>
               </thead>
               <tbody>
-                {#each marineData.hourly.time as time, indx}
+                {#each timelabels as time, indx}
                   <tr class="border-t text-gray-400">
                     <td class="py-2 px-4 text-center">{time.replace("T", " ")}</td>
                     <td class="py-2 px-4 text-center"

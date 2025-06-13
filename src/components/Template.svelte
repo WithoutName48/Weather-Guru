@@ -92,7 +92,7 @@
         bind:value={location}
         placeholder="Enter a location and press Enter"
         onkeydown={handleKeyDown}
-        class="w-full p-3 rounded-lg border border-gray-400 text-gray-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+        class="w-full p-3 text-center rounded-lg border border-gray-400 text-gray-400 focus:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white dark:border-gray-600"
       />
   
       <div class="flex flex-col space-y-3">
