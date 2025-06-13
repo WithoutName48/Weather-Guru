@@ -94,7 +94,7 @@
 </script>
 
 <div id="mf_content">
-    <div class="index_content bg-white bg-opacity-80 p-10 rounded-2xl shadow-lg max-w-2xl text-center space-y-6">
+    <div class="index_content bg-white bg-opacity-80 p-10 rounded-2xl shadow-lg min-w-2xl max-w-full text-center space-y-6">
       <div class="w-full flex flex-col items-center gap-4">
         <div class="flex flex-col sm:flex-row gap-2 w-full max-w-2xl">
           <input
