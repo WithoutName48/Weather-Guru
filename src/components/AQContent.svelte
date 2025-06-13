@@ -135,7 +135,9 @@
             };
         });
 
-        const labels = airQualityData.hourly.time;
+        const labels = airQualityData.hourly.time.map((val)=>{
+            return val.replace("T", " ");
+        });
         const labels_datasets = [
             "European AQI",
             "European AQI PM2.5",
@@ -227,9 +229,9 @@
 </script>
 
 <div id="aq_content">
-    <div class="bg-white bg-opacity-80 p-10 rounded-2xl shadow-lg max-w-2xl text-center space-y-6">
+    <div class="index_content bg-white bg-opacity-80 p-10 rounded-2xl shadow-lg min-w-2xl max-w-full text-center space-y-6">
         <div class="w-full flex flex-col items-center gap-4">
-            <div class="flex flex-col sm:flex-row gap-2 w-full max-w-2xl">
+            <div class="flex flex-col sm:flex-row gap-2 w-full">
                 <input
                     type="text"
                     bind:value={location}
@@ -246,7 +248,7 @@
             </button>
 
             {#if airQualityData}
-                <div class="w-full max-w-4xl">
+                <div class="w-full max-w-4xl bg-white p-5 flex justify-center">
                     <canvas id="airQualityChart" height="400" width="800"
                     ></canvas>
                 </div>
@@ -283,7 +285,7 @@
                                 <tr class="border-t">
                                     <td
                                         class="py-2 px-4 text-cent bg-gray-600 text-white"
-                                        >{time}</td
+                                        >{time.replace("T", " ")}</td
                                     >
                                     {#each tableData as arr}
                                         {#if i < arr.length}

@@ -21,3 +21,7 @@
 > -->
 <Router {routes} />
 <!-- </main> -->
+
+<style lang="postcss">
+  @reference "tailwindcss";
+</style>

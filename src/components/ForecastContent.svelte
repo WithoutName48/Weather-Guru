@@ -52,7 +52,9 @@
       chart.destroy();
     }
 
-    const labels = weatherData.daily.time;
+    const labels = weatherData.daily.time.map((val)=>{
+            return val.replace("T", " ");
+        });
     const dataset1 = weatherData.daily.temperature_2m_max;
     const dataset2 = weatherData.daily.temperature_2m_min;
     const label1 = "Max Temp (°C)";
@@ -91,9 +93,8 @@
   }
 </script>
 
-  <div
-    id="forecast_content">
-    <div class="bg-white bg-opacity-80 p-10 rounded-2xl shadow-lg max-w-2xl text-center space-y-6">
+  <div id="forecast_content">
+    <div class="index_content bg-white bg-opacity-80 p-10 rounded-2xl shadow-lg max-w-2xl text-center space-y-6">
       <div class="w-full flex flex-col items-center gap-4">
         <div class="flex flex-col sm:flex-row gap-2 w-full max-w-2xl">
           <input
@@ -112,13 +113,13 @@
         </button>
 
         {#if weatherData}
-          <div class="w-full max-w-4xl">
+          <div class="w-full max-w-4xl bg-white p-5">
             <canvas id="weatherChart" height="400" width="800"></canvas>
           </div>
 
           <div class="mt-6 w-full overflow-auto max-h-[400px]">
-            <table class="min-w-full bg-white rounded-lg w-full">
-              <thead class="bg-blue-400">
+            <table class="min-w-full text-gray-400 rounded-lg w-full">
+              <thead class="bg-blue-400 text-white">
                 <tr>
                   <th class="py-2 px-4">Date</th>
                   <th class="py-2 px-4">Max Temp (°C)</th>
@@ -127,7 +128,7 @@
               </thead>
               <tbody>
                 {#each weatherData.daily.time as time, index}
-                  <tr class="border-t text-gray-600">
+                  <tr class="border-t text-gray-400">
                     <td class="py-2 px-4 text-center">{time}</td>
                     <td class="py-2 px-4 text-center"
                       >{weatherData.daily.temperature_2m_max[index]}</td

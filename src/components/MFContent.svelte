@@ -52,7 +52,9 @@
       chart.destroy();
     }
 
-    const labels = marineData.hourly.time;
+    const labels = marineData.hourly.time.map((val)=>{
+            return val.replace("T", " ");
+        });
     const dataset1 = marineData.hourly.wave_height;
     const dataset2 = marineData.hourly.ocean_current_velocity;
     const label1 = "Wave height [m]";
@@ -92,7 +94,7 @@
 </script>
 
 <div id="mf_content">
-    <div class="bg-white bg-opacity-80 p-10 rounded-2xl shadow-lg max-w-2xl text-center space-y-6">
+    <div class="index_content bg-white bg-opacity-80 p-10 rounded-2xl shadow-lg max-w-2xl text-center space-y-6">
       <div class="w-full flex flex-col items-center gap-4">
         <div class="flex flex-col sm:flex-row gap-2 w-full max-w-2xl">
           <input
@@ -105,19 +107,19 @@
 
         <button
           on:click={fetchData}
-          class="w-full p-3 !bg-blue-500 text-white rounded-lg hover:bg-blue-600 transitio"
+          class="w-full p-3 !bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
         >
           Fetch marine forecast
         </button>
 
         {#if marineData}
-          <div class="w-full max-w-4xl">
+          <div class="w-full max-w-4xl bg-white p-5">
             <canvas id="marineChart" height="400" width="800"></canvas>
           </div>
 
           <div class="mt-6 w-full overflow-auto max-h-[400px]">
-            <table class="min-w-full bg-white rounded-lg w-full">
-              <thead class="bg-blue-400">
+            <table class="min-w-full text-gray-400 rounded-lg w-full">
+              <thead class="bg-blue-400 text-white">
                 <tr>
                   <th class="py-2 px-4">Date</th>
                   <th class="py-2 px-4">Wave height [m]</th>
@@ -126,8 +128,8 @@
               </thead>
               <tbody>
                 {#each marineData.hourly.time as time, indx}
-                  <tr class="border-t text-gray-600">
-                    <td class="py-2 px-4 text-center">{time}</td>
+                  <tr class="border-t text-gray-400">
+                    <td class="py-2 px-4 text-center">{time.replace("T", " ")}</td>
                     <td class="py-2 px-4 text-center"
                       >{marineData.hourly.wave_height[indx]}</td
                     >
