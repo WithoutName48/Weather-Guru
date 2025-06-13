@@ -18,16 +18,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* a {
-  font-weight: 500;
-  color: #dddeff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #cfcfcf;
-} */
-
 body {
   margin: 0;
   display: flex;
@@ -70,9 +60,5 @@ button:focus-visible {
   :root {
     color: #213547;
     background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
   }
 }

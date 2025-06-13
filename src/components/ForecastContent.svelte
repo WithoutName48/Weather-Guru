@@ -107,7 +107,7 @@
 
         <button
           on:click={fetchData}
-          class="w-full p-3 !bg-blue-500 text-white rounded-lg hover:bg-blue-600 transitio"
+          class="w-full p-3 bg-blue-500 text-white rounded-lg transition hover:bg-blue-600"
         >
           Fetch Forecast
         </button>

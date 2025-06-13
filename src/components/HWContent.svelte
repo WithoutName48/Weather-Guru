@@ -153,7 +153,7 @@ async function fetchData() {
 
       <button
         on:click={fetchData}
-        class="w-full p-3 !bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+        class="w-full p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
       >
         Fetch historical data
       </button>

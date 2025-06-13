@@ -137,7 +137,7 @@
         </p>
       </div>
 
-      <button onclick={toggleDarkMode} class="p-2 bg-blue-500 dark:bg-gray-900 text-white rounded-lg">
+      <button onclick={toggleDarkMode} class="p-2 bg-blue-500 dark:bg-gray-900 text-white rounded-lg hover:bg-blue-600">
         {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
       </button>
     </div>
